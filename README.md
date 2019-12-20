@@ -1,2 +1,2 @@
 # PadLike
-A simple textediter base on QT
+A simple texteditor base on QT
