@@ -14,6 +14,7 @@ A simple texteditor case on QT.
 - [x] 退出前确认是否保存
 - [x] 输出至PDF
 - [x] 打印
+- [x] 改动后的文本，窗口显示的文件名应该带*
 - [x] 行号、列号、长度的状态显示
 - [x] 缩进长度设置
 - [x] 编码方式的显示，如window换行为\r\n，mac为\r，Linux为\n
