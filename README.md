@@ -37,4 +37,5 @@ A simple texteditor case on QT.
 - [ ] 多文档   ：QTabWidget或者QT MDI
 - [ ] 侧边栏、缩略图   ：QListViewModel，QFileSystemModel，QTreeWidget显示文件树，QDockWidget包裹浮动；缩略图，......
 - [ ] 编译    :QProcess 处理传递参数
+- [ ] 可使用QScintilla库实现更多额外功能
 - [ ] 其他乱七八糟没想到的东西
