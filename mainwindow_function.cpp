@@ -547,7 +547,7 @@ void MainWindow::onFullScreen(){
 
 
 void MainWindow::onHelpManual(){
-    QDesktopServices::openUrl(QUrl("https://www.github.com/Arkenol"));
+    QDesktopServices::openUrl(QUrl("https://www.github.com/Arkenol/Padlike"));
 }
 
 
