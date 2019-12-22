@@ -1000,6 +1000,7 @@ void CodeEditor::FunctionFoldAreaPaintEvent(QPaintEvent *event){
 
             foldPosition = static_cast<int>(blockBoundingGeometry(topBlock).top());
             painter.setPen(Qt::black);
+            painter.setBrush(Qt::solidpattern);
             int littleChange = firstVisibleBlock().blockNumber() == 0 ? 4 : 0;
 
             if(topBlock.next().isVisible()){
@@ -1009,26 +1010,14 @@ void CodeEditor::FunctionFoldAreaPaintEvent(QPaintEvent *event){
                     QPointF(12,foldPosition+littleChange+11)
                 };
                 painter.drawPolygon(points1,3);
-                QPointF points2[3] = {
-                    QPointF(11,foldPosition+littleChange+6),
-                    QPointF(7,foldPosition+littleChange+10),
-                    QPointF(11,foldPosition+littleChange+10)
-                };
-                painter.drawPolygon(points2,3);
-                QPointF points3[3] = {
-                    QPointF(10,foldPosition+littleChange+7),
-                    QPointF(8,foldPosition+littleChange+9),
-                    QPointF(10,foldPosition+littleChange+9)
-                };
-                painter.drawPolygon(points3,3);
             }
             else{
-                QPointF points[3] = {
+                QPointF points1[3] = {
                     QPointF(7,foldPosition+littleChange+4),
                     QPointF(7,foldPosition+littleChange+12),
                     QPointF(11,foldPosition+littleChange+8)
                 };
-                painter.drawPolygon(points,3);
+                painter.drawPolygon(points1,3);
             }
         }
         block = block.next();
