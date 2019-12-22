@@ -436,7 +436,6 @@ void CodeEditor::paintEvent(QPaintEvent *event){
     int blockCounter = 1;
     QPainter painter(viewport());
     painter.setPen(Qt::black);
-    //painter.setPen(cpadPalette.defaultGroup[9]);
     int littleChange = firstVisibleBlock().blockNumber() == 0 ? 4 : 0;
     while(block.blockNumber() != -1 && blockCounter <= visibleBlockNum)
     {
