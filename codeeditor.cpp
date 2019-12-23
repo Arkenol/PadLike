@@ -497,12 +497,13 @@ void CodeEditor::paintEvent(QPaintEvent *event){
         if(JudgeLeftBracket(block)) block = block.next();
 
         QTextBlock leftBracketBlock,rightBracketBlock;
-        if(MatchForFolding(block,leftBracketBlock,rightBracketBlock))
+        if(MatchForFolding(block,leftBracketBlock,rightBracketBlock))           //plaintext editor主区域显示
         {
             int littleChange = firstVisibleBlock().blockNumber() == 0 ? 4 : 0;
-            int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(leftBracketBlock).bottom())+
-                                      (rightBracketBlock.blockNumber()-leftBracketBlock.blockNumber())*
-                                      static_cast<int>(blockBoundingGeometry(leftBracketBlock).height());
+            //int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(leftBracketBlock).bottom())+
+                                      //(rightBracketBlock.blockNumber()-leftBracketBlock.blockNumber())*
+                                      //static_cast<int>(blockBoundingGeometry(leftBracketBlock).height());
+            int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(rightBracketBlock).bottom());
             painter.fillRect(QRect(0,littleChange,event->rect().width(),
                                    static_cast<int>(blockBoundingGeometry(leftBracketBlock).top())),brush);
             painter.fillRect(QRect(0,bottomBlockPosition+littleChange,
