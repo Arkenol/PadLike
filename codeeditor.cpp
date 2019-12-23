@@ -945,21 +945,24 @@ void CodeEditor::FunctionFoldAreaPaintEvent(QPaintEvent *event){
             if(JudgeLeftBracket(block))
                 block = block.next();
 
-            if(MatchForFolding(block,topBlock,bottomBlock)){
+            if(MatchForFolding(block,topBlock,bottomBlock)){            //小瑕疵
                 if(topBlock.blockNumber() != 0 && JudgeLeftBracket(topBlock.previous())){
                     topBlock = topBlock.previous();
                 }
                 if(topBlock.next().isVisible()==true){
-                    qDebug()<<topBlock.next().blockNumber()<<"\t";
+                    //qDebug()<<topBlock.next().blockNumber()<<"\t";
                     isRepaint = true;
                     QLinearGradient linearG(QPointF(1,static_cast<int>(blockBoundingGeometry(topBlock).top())),
                                                 QPointF(19,static_cast<int>(blockBoundingGeometry(topBlock).top())));
                     linearG.setColorAt(0,QColor(98,153,210));
                     linearG.setColorAt(1,QColor(98,153,210).lighter(120));
                     QBrush brush(linearG);
-                    int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(topBlock).bottom())+
-                                (bottomBlock.blockNumber()-topBlock.blockNumber())*
-                                static_cast<int>(blockBoundingGeometry(topBlock).height());
+                    //int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(topBlock).bottom())+
+                                //(bottomBlock.blockNumber()-topBlock.blockNumber())*
+                                //static_cast<int>(blockBoundingGeometry(topBlock).height());
+                    int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(bottomBlock).bottom());
+                    QRect a(1,static_cast<int>(blockBoundingGeometry(topBlock).top()),18,
+                            bottomBlockPosition-static_cast<int>(blockBoundingGeometry(topBlock).top()));
                     painter.fillRect(QRect(1,static_cast<int>(blockBoundingGeometry(topBlock).top()),18,
                                    bottomBlockPosition-static_cast<int>(blockBoundingGeometry(topBlock).top())),
                                    brush);
@@ -973,7 +976,7 @@ void CodeEditor::FunctionFoldAreaPaintEvent(QPaintEvent *event){
                     linearG.setColorAt(1,QColor(98,153,210).lighter(120));
                     QBrush brush(linearG);
                     //qDebug()<<block_bottom<<"\t"<<blockBoundingGeometry(topBlock);
-                    QRect a = QRect(1,static_cast<int>(blockBoundingGeometry(topBlock).top()),18,
+                    QRect a(1,static_cast<int>(blockBoundingGeometry(topBlock).top()),18,
                                     static_cast<int>(blockBoundingRect(topBlock).height()));
                     painter.fillRect(a,brush);
                 }
