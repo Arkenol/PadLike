@@ -1,6 +1,6 @@
 # **PadLike**
 A simple texteditor case on QT.
-![如图所示](https://github.com/Arkenol/PadLike/blob/master/test/001.png)
+![如图所示](https://github.com/Arkenol/PadLike/blob/master/test/01.png)
 ### 实现细节功能汇总
 - [x] 正常的打开、保存、关闭文件
 - [x] 常用的剪切、复制、粘贴、撤销、恢复文本功能
