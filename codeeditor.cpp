@@ -946,21 +946,37 @@ void CodeEditor::FunctionFoldAreaPaintEvent(QPaintEvent *event){
                 block = block.next();
 
             if(MatchForFolding(block,topBlock,bottomBlock)){
-                isRepaint = true;
                 if(topBlock.blockNumber() != 0 && JudgeLeftBracket(topBlock.previous())){
                     topBlock = topBlock.previous();
                 }
-                QLinearGradient linearG(QPointF(1,static_cast<int>(blockBoundingGeometry(topBlock).top())),
-                                            QPointF(19,static_cast<int>(blockBoundingGeometry(topBlock).top())));
-                linearG.setColorAt(0,QColor(98,153,210));
-                linearG.setColorAt(1,QColor(98,153,210).lighter(120));
-                QBrush brush(linearG);
-                int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(topBlock).bottom())+
-                            (bottomBlock.blockNumber()-topBlock.blockNumber())*
-                            static_cast<int>(blockBoundingGeometry(topBlock).height());
-                painter.fillRect(QRect(1,static_cast<int>(blockBoundingGeometry(topBlock).top()),18,
+                if(topBlock.next().isVisible()==true){
+                    qDebug()<<topBlock.next().blockNumber()<<"\t";
+                    isRepaint = true;
+                    QLinearGradient linearG(QPointF(1,static_cast<int>(blockBoundingGeometry(topBlock).top())),
+                                                QPointF(19,static_cast<int>(blockBoundingGeometry(topBlock).top())));
+                    linearG.setColorAt(0,QColor(98,153,210));
+                    linearG.setColorAt(1,QColor(98,153,210).lighter(120));
+                    QBrush brush(linearG);
+                    int bottomBlockPosition = static_cast<int>(blockBoundingGeometry(topBlock).bottom())+
+                                (bottomBlock.blockNumber()-topBlock.blockNumber())*
+                                static_cast<int>(blockBoundingGeometry(topBlock).height());
+                    painter.fillRect(QRect(1,static_cast<int>(blockBoundingGeometry(topBlock).top()),18,
                                    bottomBlockPosition-static_cast<int>(blockBoundingGeometry(topBlock).top())),
                                    brush);
+                }
+                else{
+                    isRepaint = true;
+                    //qDebug()<<topBlock.blockNumber()<<"\t"<<bottomBlock.blockNumber();
+                    QLinearGradient linearG(QPointF(1,static_cast<int>(blockBoundingGeometry(topBlock).top())),
+                                                QPointF(19,static_cast<int>(blockBoundingGeometry(topBlock).top())));
+                    linearG.setColorAt(0,QColor(98,153,210));
+                    linearG.setColorAt(1,QColor(98,153,210).lighter(120));
+                    QBrush brush(linearG);
+                    //qDebug()<<block_bottom<<"\t"<<blockBoundingGeometry(topBlock);
+                    QRect a = QRect(1,static_cast<int>(blockBoundingGeometry(topBlock).top()),18,
+                                    static_cast<int>(blockBoundingRect(topBlock).height()));
+                    painter.fillRect(a,brush);
+                }
             }
         }
     }
