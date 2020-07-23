@@ -36,6 +36,13 @@ protected:
     void paintEvent(QPaintEvent *event) override {
         codeEditor->LineNumberAreaPaintEvent(event);
     }
+    /*void wheelEvent->(QWheelEvent *event)override{    bug
+        int nums_delta = event->angelDelta().y();           //delta()
+        nums_delta/=15;
+        codeEditor->scroll(0,nums_delta);
+        nums_degree+=codeEditor->verticalScrollBar()->value();
+        codeEditor->verticalScrollBar()->setValue(nums_degree);     //反方向，bug
+    }*/
 
 private:
     CodeEditor *codeEditor;
@@ -149,6 +156,7 @@ void CodeEditor::setLineNumberArea(){
     connect(this,SIGNAL(updateRequest(QRect,int)),this,SLOT(updateLineNumberArea(QRect,int)));
     connect(this,SIGNAL(updateRequest(QRect,int)),functionFoldArea,SLOT(update()));
     connect(this,SIGNAL(textChanged()),functionFoldArea,SLOT(repaint()));
+    //connect(this->verticalScrollBar(),SIGNAL(valueChanged(int)),this->verticalScrollBar(),SLOT(setValue()));
 
 
     updateLineNumberAreaWidth(0);
